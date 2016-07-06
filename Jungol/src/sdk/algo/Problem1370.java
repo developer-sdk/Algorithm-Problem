@@ -5,6 +5,14 @@ import java.util.Arrays;
 import java.util.Comparator;
 import java.util.Scanner;
 
+/**
+ * 정올, 문제은행
+ * 그리디 알고리즘
+ * 1370 회의실 배정 문제 
+ * 
+ * @author seo
+ *
+ */
 public class Problem1370 {
 
 	public static void main(String[] args) {
