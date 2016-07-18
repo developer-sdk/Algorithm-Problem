@@ -19,6 +19,7 @@ public class DepthFirstSearch {
 							{ 1, 0, 0, 1 },
 							{ 0, 1, 1, 0 } };
 		
+		// 방문 여부 확인 
 		int[] visited = new int[4];
 		visited[0] = 1;
 		dfs(array, visited, 0, String.valueOf(0));
@@ -30,6 +31,7 @@ public class DepthFirstSearch {
 		
 		for(int i = 0; i < array.length; i++) {
 			
+			// 방문 가능하면 우선적으로 접근
 			if(array[location][i] == 1 && visited[i] == 0) {
 				visited[i] = 1;
 				dfs(array, visited, i, path + String.valueOf(i));
