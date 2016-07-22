@@ -4,6 +4,10 @@ import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Scanner;
 
+/**
+ * @author whitebeard
+ * @since 2016.07.22
+ */
 public class Problem1106 {
 
 	static int min = Integer.MAX_VALUE;
