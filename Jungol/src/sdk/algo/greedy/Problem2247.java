@@ -1,4 +1,4 @@
-package sdk.algo;
+package sdk.algo.greedy;
 
 import java.util.Arrays;
 import java.util.Comparator;

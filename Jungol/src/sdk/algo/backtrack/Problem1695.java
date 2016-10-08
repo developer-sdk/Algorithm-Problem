@@ -1,4 +1,4 @@
-package sdk.algo;
+package sdk.algo.backtrack;
 
 import java.util.ArrayList;
 import java.util.Collections;

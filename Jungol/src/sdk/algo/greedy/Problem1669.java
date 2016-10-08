@@ -1,11 +1,11 @@
-package sdk.algo;
+package sdk.algo.greedy;
 
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.Scanner;
 
 /**
- * 정올, 회의실배정 1669
+ * 정올, 소시지공장, 그리디,  1669
  * 
  * 소시지의 길이 기준으로 오름차순정렬  
  * 너비 순서대로 오름차순으로 작업진행 

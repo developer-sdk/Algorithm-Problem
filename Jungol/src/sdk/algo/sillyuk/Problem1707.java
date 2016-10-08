@@ -1,4 +1,4 @@
-package sdk.algo;
+package sdk.algo.sillyuk;
 
 import java.util.Scanner;
 

@@ -1,10 +1,12 @@
-package sdk.algo;
+package sdk.algo.bfs;
 
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Scanner;
 
 /**
+ * BFS, 장기 
+ * 
  * @author whitebeard
  * @since 2016.07.22
  */

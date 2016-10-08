@@ -1,4 +1,4 @@
-package sdk.algo;
+package sdk.algo.bfs;
 
 import java.util.LinkedList;
 import java.util.Queue;

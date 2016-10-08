@@ -1,4 +1,4 @@
-package sdk.algo;
+package sdk.algo.greedy;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -10,7 +10,7 @@ import java.util.Scanner;
  * 그리디알고리즘
  * 1828 냉장고 문제 
  * 
- * @author seo
+ * @author whitebeard
  *
  */
 public class Problem1828 {

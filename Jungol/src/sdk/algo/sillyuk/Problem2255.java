@@ -1,4 +1,4 @@
-package sdk.silryuk;
+package sdk.algo.sillyuk;
 
 import java.util.Scanner;
 import java.util.TreeSet;
