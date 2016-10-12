@@ -40,6 +40,7 @@ public class Problem1457 {
 
 		int[][] paper = new int[m][n];
 
+		// 입력받은 사각형을 모눈종이에 기록한다. 
 		for (int[] square : squares) {
 
 			for (int i = square[0]; i < square[2]; i++) {
@@ -52,24 +53,26 @@ public class Problem1457 {
 		int counter = 100;
 		for (int x = 0; x < m; x++) {
 			for (int y = 0; y < n; y++) {
-				int number = paper[x][y];
-
-				if (number == 0)
+				if (paper[x][y] == 0)
+					// 사각형이 없는 곳이면 카운터값으로 기록한다. 
 					checker(paper, x, y, counter++);
 			}
 		}
 
+		// 카운터로 입력된 값을 result에 기록 
 		int[] result = new int[counter - 100];
 		for (int x = 0; x < m; x++) {
 			for (int y = 0; y < n; y++) {
 				int number = paper[x][y];
 
+				// 카운터에서 100을 뺀값 위치에 1씩 추가하면서 카운터 개수를 센다. 
 				if (number != 1) {
 					result[counter - number - 1]++;
 				}
 			}
 		}
 
+		// 카운터가 기록된 값을 출력 
 		// for(int a = 0; a < m; a++) {
 		// for(int b = 0; b < n; b++) {
 		// System.out.format("%3d ", paper[a][b]);
@@ -79,6 +82,7 @@ public class Problem1457 {
 
 		Arrays.sort(result);
 
+		// 사이즈와 개수 출력 
 		System.out.println(counter - 100);
 		for (int i : result)
 			System.out.format("%d ", i);
@@ -86,6 +90,7 @@ public class Problem1457 {
 
 	public static void checker(int[][] squares, int x, int y, int value) {
 
+		// 위치가 배열 외부이면 종료  
 		if (x < 0 || y < 0 || x >= squares.length || y >= squares[0].length) {
 			return;
 		}
@@ -93,6 +98,8 @@ public class Problem1457 {
 		int number = squares[x][y];
 
 		if (number == 0) {
+			// 현재위치가 빈곳이면 value로 기록하고
+			// 상하좌우로 이동하면서 빈곳을 확인 
 			squares[x][y] = value;
 			checker(squares, x - 1, y, value);
 			checker(squares, x + 1, y, value);
