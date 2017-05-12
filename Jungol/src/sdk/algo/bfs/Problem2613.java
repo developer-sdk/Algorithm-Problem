@@ -5,104 +5,73 @@ import java.util.Queue;
 import java.util.Scanner;
 
 /**
- * BFS, 토마토(고) 
- * 
- * @author whitebeard
+ * 정올, bfs, 2613
+ * 토마토 
+ * @author whitebeard-k
  *
  */
 public class Problem2613 {
 
-	public static int count = 0;
-	public static int tomato = 0;
-	
-	public static int X;
-	public static int Y;
-
 	public static void main(String[] args) {
 
-		Scanner in = new Scanner(System.in);
-		int y = in.nextInt();
-		int x = in.nextInt();
+		Queue<int[]> queue = new LinkedList<>();
 
-		X = x;
-		Y = y;
-		
+		Scanner sc = new Scanner(System.in);
+		int y = sc.nextInt() + 1;
+		int x = sc.nextInt() + 1;
 		int[][] array = new int[x][y];
-		Queue<int[]> queue = new LinkedList<int[]>();
+		for (int i = 1; i < x; i++) {
+			for (int k = 1; k < y; k++) {
+				array[i][k] = sc.nextInt();
 
-		int totalSize = 0;
-		for (int i = 0; i < x; i++) {
-			for (int j = 0; j < y; j++) {
-				array[i][j] = in.nextInt();
-
-				if (array[i][j] == 0)
-					totalSize++;
-				else if (array[i][j] == 1)
-					queue.add(new int[] { i, j });
+				if (array[i][k] == 1) {
+					queue.add(new int[] { i, k });
+				}
 			}
 		}
-		in.close();
+		sc.close();
 
-//		 int y = 6;
-//		 int x = 4;
-//		 
-//		 X = x;
-//		 Y = y;
-//		 Queue<int[]> queue = new LinkedList<int[]>();
-//		 
-//		 int[][] array = { { 0, 0, 0, 0, 0, 0 },
-//		 { 0, 0, 0, 0, 0, 0 },
-//		 { 0, 0, 0, 0, 0, 0 },
-//		 { 0, 0, 0, 0, 0, 1 } };
-//
-//		 int totalSize = 23;
-//		 queue.add(new int[] { 3, 5 });
+		bfs(queue, array);
 
-		bfs(array, queue);
+		// 남은 토마토가 있는지 확인 
+		for (int i = 1; i < x; i++)
+			for (int k = 1; k < y; k++)
+				if (array[i][k] == 0) {
+					System.out.println(-1);
+					System.exit(0);
+				}
 
-		if (tomato == totalSize)
-			System.out.println(count);
-		else
-			System.out.println(-1);
+		System.out.println(count - 1);
 	}
 
-	public static void bfs(int[][] array, Queue<int[]> queue) {
+	// 상하좌우 이동을 위한 배열 
+	static int[][] moves = { { -1, 0 }, { 1, 0 }, { 0, -1 }, { 0, 1 } };
+	static int count = 1;
 
-		int size = queue.size();
+	public static void bfs(Queue<int[]> queue, int[][] array) {
 
-		while (size-- > 0) {
+		while (!queue.isEmpty()) {
 
-			int[] node = queue.poll();
-			int x = node[0];
-			int y = node[1];
+			int size = queue.size();
 
-			input(x-1, y, array, queue);
-			input(x+1, y, array, queue);
-			input(x, y-1, array, queue);
-			input(x, y+1, array, queue);	
+			while (size-- > 0) {
+
+				int[] current = queue.poll();
+
+				for (int[] move : moves) {
+					int x = current[0] + move[0];
+					int y = current[1] + move[1];
+
+					// 이동이 가능한지 확인하고, 가능하면 큐에 입력 
+					if (0 < x && x < array.length && 0 < y && y < array[0].length && array[x][y] == 0) {
+						queue.add(new int[] { x, y });
+						array[x][y] = count;
+					}
+				}
+			}
+
+			if (!queue.isEmpty())
+				count++;
 		}
-
-		if (queue.size() != 0) {
-			count++;
-			bfs(array, queue);
-		}
-	}
-	
-	public static void input(int x, int y, int[][] array, Queue<int[]> queue) {
-		
-		if( 0 <= x && x < X && 0 <= y && y < Y && array[x][y] == 0 && !checkDup(x, y, queue)) {
-			queue.add(new int[] { x, y });
-			array[x][y] = 1;
-			tomato++;
-		}
-	}
-
-	public static boolean checkDup(int x, int y, Queue<int[]> queue) {
-		for (int[] num : queue) {
-			if (num[0] == x && num[1] == y)
-				return true;
-		}
-
-		return false;
 	}
 }
