@@ -6,11 +6,11 @@ public class Problem1034 {
 
 	public static void main(String[] args) {
 		
-//		Scanner in = new Scanner(System.in);
-//		String str = in.next();
-//		in.close();
+		Scanner in = new Scanner(System.in);
+		String str = in.next();
+		in.close();
 		
-		String str = "ABCDE";
+//		String str = "ABCDE";
 		char[] chars = str.toCharArray();
 		int[] ints = new int[chars.length];
 		
@@ -18,7 +18,7 @@ public class Problem1034 {
 			ints[i] = (int) chars[i] - (int)'A';
 		}
 		
-//		for(int i : ints) {
+//		for(int i : intØßs) {
 //			System.out.printf("%d ", i);
 //		}
 //		System.out.println();;
