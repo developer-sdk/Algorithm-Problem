@@ -35,13 +35,16 @@ public class Problem1766 {
 				maps.put(from, list);
 			}
 
+			// 노드의 연결상태를 링크드 리스트로 표현 
 			maps.get(from).add(to);
+			// 입력으로 들어오는 간선의 상태를 기록 
 			in[to]++;
 		}
 		sc.close();
 
 		PriorityQueue<Integer> queue = new PriorityQueue<>();
 
+		// 초기 시작점을 기록 
 		for (int i = 1; i < N + 1; i++) {
 			if (in[i] == 0)
 				queue.offer(i);
@@ -52,6 +55,7 @@ public class Problem1766 {
 
 			System.out.print(from + " ");
 
+			// 노드가 간선을 가지고 있으면 큐에 추가 
 			if (maps.containsKey(from)) {
 				for (int to : maps.get(from)) {
 
