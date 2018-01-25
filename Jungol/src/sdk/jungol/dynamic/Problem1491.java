@@ -4,6 +4,13 @@ import java.util.Collections;
 import java.util.LinkedList;
 import java.util.Scanner;
 
+/**
+ * 정올, 1491
+ * 자동차경주대회 
+ * 
+ * @author whitebeard-k
+ *
+ */
 public class Problem1491 {
 
 	static int CAR_DIST;
