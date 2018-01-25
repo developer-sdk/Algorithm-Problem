@@ -11,6 +11,10 @@ public class BurbleSort {
 					data[j + 1] = temp;
 				}
 			}
+			
+			for(int n : data) 
+				System.out.printf("%d ", n);
+			System.out.println();
 		}
 	}
 

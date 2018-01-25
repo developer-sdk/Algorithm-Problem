@@ -11,6 +11,10 @@ public class InsertionSort {
 				A[j + 1] = A[j];
 			}
 			A[j + 1] = temp;
+			
+			for(int n : A) 
+				System.out.printf("%d ", n);
+			System.out.println();
 		}
 	}
 
