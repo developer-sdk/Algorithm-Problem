@@ -2,7 +2,7 @@ package sdk.sort;
 
 import java.util.Arrays;
 
-public class BubleSort {
+public class BubbleSort {
 
     static int[] array = { 9, 3, 5, 4, 6, 1, 8, 2 };
 
@@ -27,6 +27,6 @@ public class BubleSort {
     }
 
     public static void main(String[] args) {
-        BubleSort.sort(array);
+        BubbleSort.sort(array);
     }
 }
