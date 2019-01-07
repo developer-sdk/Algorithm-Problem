@@ -10,7 +10,7 @@ import java.util.Scanner;
  * @author whitebeard-k
  *
  */
-public class Probblem10942 {
+public class Problem10942 {
 
 	static int N;
 	static int M;
