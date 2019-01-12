@@ -50,6 +50,7 @@ public class Problem1600 {
 		System.out.println(result);
 	}
 
+	// 원숭이 움직임 
 	public static int move(Monkey start) {
 
 		Queue<Monkey> queue = new LinkedList<>();
@@ -59,8 +60,10 @@ public class Problem1600 {
 
 			Monkey current = queue.poll();
 
+			// 원숭이 움직임 
 			moveMonkey(current, queue);
 
+			// 말로 움직일 횟수가 남아있으면 
 			if (current.k < K)
 				moveHorse(current, queue);
 		}
@@ -68,8 +71,8 @@ public class Problem1600 {
 		return min();
 	}
 
+	// 최저 이동 횟수 확인 
 	private static int min() {
-
 		int result = Integer.MAX_VALUE;
 		for (int k = 0; k < K + 1; k++) {
 			result = Math.min(result, min[k][H - 1][W - 1]);
@@ -100,7 +103,7 @@ public class Problem1600 {
 	}
 
 	private static boolean isMoveable(int x, int y, int k, int c) {
-
+		// 이동 가능 확인, min 보다 작은 카운트 일때만 이동 가능 
 		if (0 <= x && x < H && 0 <= y && y < W && map[x][y] != 1 && min[k][x][y] > c)
 			return true;
 
@@ -111,8 +114,8 @@ public class Problem1600 {
 class Monkey {
 	public int x;
 	public int y;
-	public int k;
-	public int c;
+	public int k;	// 말로 이동 횟수 
+	public int c;	// 이동 횟수 
 
 	public Monkey(int x, int y, int k, int c) {
 		super();
