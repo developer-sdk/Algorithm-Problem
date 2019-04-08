@@ -25,103 +25,82 @@ public class Problem14890 {
 		map = new int[N][N];
 		reverseMap = new int[N][N];
 		
-
 		for (int x = 0; x < N; x++) {
 			for (int y = 0; y < N; y++) {
 				map[x][y] = sc.nextInt();
 				reverseMap[y][x] = map[x][y]; 
 			}
 		}
+		
+		sc.close();
 
 		int result = 0;
-
 		result = checker(map);
-		System.out.println("-------------");
 		result += checker(reverseMap);
-		System.out.println("-------------");
 		System.out.println(result);
 	}
 	
 	public static int checker(int[][] map) {
 		
-		boolean[][] isLadder = new boolean[N][N];
-		
 		int result = 0;
 		
 		for (int x = 0; x < N; x++) {
-
-			boolean isEnable = true;
-			
-			for (int y = 0; y < N; y++) {
-
-				if (y + 1 >= N)
-					continue;
-
-				int currentHeight = map[x][y];
-
-				if (currentHeight == map[x][y + 1]) { 	// 현재 높이와 다음 높이가같으면 처리 없음 
-					continue;
-				} else if (currentHeight - map[x][y + 1] == 1) {	// 다음 높이가 1 낮으면 
-					if (y + L < N && map[x][y + 1] == map[x][y + 2]) {	// 계단을 놓을 공간이 있고, 2개의 높이가 같으면 
-						
-						boolean isOk = true;
-						for(int i = 2; i <= L; i++) {
-							if(map[x][y+1] != map[x][y+i]) {
-								isOk = false;
-								break;
-							}
-						}
-						
-						if(isOk) {
-							for(int i = 1; i <= L; i++) {
-								isLadder[x][y+i] = true;
-							}
-							
-							y += L-1;
-							continue;
-						}
-						
-					} else {
-						isEnable = false;
-						break;
-					}
-				} else if (currentHeight - map[x][y + 1] == -1) {	// 다음 높이가 1 높으면 
-					if(y-L-1 >= 0) {
-						
-						boolean isOk = true;
-						
-						for(int i = 1; i < L; i++) {
-							if(!(!isLadder[x][y-i] && currentHeight == map[x][y-i])) { 
-								isOk = false;
-								break;
-							}
-						}
-						
-						if(isOk) {
-							for(int i = 0; i < L; i++) {
-								isLadder[x][y-i] = true;
-								continue;
-							}
-						}
-						
-					} else {
-						isEnable = false;
-						break;
-					}
-					
-				} else if (Math.abs(currentHeight - map[x][y + 1]) >= 2) {
-					isEnable = false;
-					break;
-				}
-			}
-
-			if(isEnable) {
-				System.out.println(x);
-				result++;
-			}
-				
+			result += innserChecker(map[x]);	// 이중배열의 한 행만 전달 
 		}
 		
 		return result;
+	}
+
+	private static int innserChecker(int[] is) {
+		
+		boolean[] isLadder = new boolean[N];
+		
+		for(int i = 0; i < N-1; i++) {
+			
+			int current = is[i];
+			
+			if(current == is[i+1]) {
+				continue;
+			} else {
+				if(Math.abs(current - is[i+1]) != 1) {	// 높이차가 1이 아니면 종료 
+					return 0;
+				} else {
+					
+					if(current - is[i+1] == 1) {	// 낮아지면
+						
+						if(i + L >= N)
+							return 0;
+						
+						for(int k = 1; k <= L; k++) {
+							if(is[i+1] != is[i+k]) {
+								return 0;
+							}
+						}
+						
+						for(int k = 1; k <= L; k++) {
+							isLadder[i+k] = true;
+						}
+						
+						i += L-1;
+					} else {	// 높아지면 
+						
+						if(i - L + 1 < 0)
+							return 0;
+						
+						for(int k = 0; k < L; k++) {
+							if(isLadder[i-k] || is[i] != is[i-k]) {
+								return 0;
+							}
+						}
+						
+						for(int k = 0; k < L; k++) {
+							isLadder[i-k] = true;
+						}
+					}
+				}
+			}
+		}
+		
+		return 1;
 	}
 }
